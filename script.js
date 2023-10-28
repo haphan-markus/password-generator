@@ -90,33 +90,32 @@ var upperCasedCharacters = [
 
 
 // Function to prompt user for password options
-function getPasswordOptions() {
+function getPasswordOptions(arr) {
   var f1 = confirm("Click Confirm to include special characters");
-  console.log(f1);
+  arr.push(f1);
   var f2 = confirm("Click Confirm to include numeric characters");
-  console.log(f2);
+  arr.push(f2);
   var f3 = confirm("Click Confirm to include lowercased characters");
-  console.log(f3);
+  arr.push(f3);
   var f4 = confirm("Click Confirm to include uppercased characters");
-  console.log(f4);
+  arr.push(f4);
+  console.log("Confirm option for the password: " + f1 + ", " + f2 + ", " + f3 + ", " + f4 + ".");
   if (f1 == false && f2 == false && f3 == false && f4 == false){
     alert("Your password options are not valid. The password needs to contain either lowercase, uppercase, numeric or special characters");
     return;
-  }
-  return [
-    passwordOption = [f1,f2,f3,f4],
-    console.log(passwordOption),
-  ]
+  } else {return arr}
 }
 
 // Function for getting a random element from an array
 function getRandom(min,max) {
-  Math.floor(Math.random() * (max-min+1)) + min;
+  return Math.floor(Math.random() * (max-min+1)) + min;
 }
 
 // Function to generate password with user input - This is the main one.
 function generatePassword() {
   var num = prompt("How many characters do you want your Password to contain?");
+  num = +num;
+  console.log(num);
   if (num < 8){
     alert("The number of characters must be more than 8");
     return;
@@ -124,18 +123,24 @@ function generatePassword() {
     alert("The number of characters must be less than 129");
     return;
   }
-  getPasswordOptions();
+
+  var passwordOption = [];
   var quantity = 0;
+  getPasswordOptions(passwordOption);
+  console.log(passwordOption); console.log(typeof(passwordOption));
   passwordOption.forEach(function(i){
-    if (i == true){
+    if (i === true){
       quantity++};
   })
   console.log(quantity);
-  var arrx = []; //To store random number of characters for each selected character types
+  
+  var NumberCharacters = []; //To store random number of characters for each selected character types
   if (quantity == 1){
-    arrx = [num];
-  } else {getRandomNumCharacter(num,quantity,arrx);}
-  console.log(arrx);
+    NumberCharacters.push(num);
+  } else {
+    getRandomNumCharacter(num,quantity,NumberCharacters);
+  }
+  console.log(NumberCharacters);
   
 }
 
@@ -147,9 +152,9 @@ function getRandomNumCharacter(x,y,arr){
   };
   
   var pikachu = getRandom(1,x);
+  console.log(pikachu);
   return [arr.push(pikachu),
-          y = y-1,
-          getRandomNumCharacter(x-pikachu,y,arr),
+          getRandomNumCharacter((x-pikachu), (y-1), arr),
           ]
 }
 
