@@ -110,8 +110,8 @@ function getPasswordOptions() {
 }
 
 // Function for getting a random element from an array
-function getRandom(arr) {
-  Math.floor(Math.random() * arr) + 1;
+function getRandom(min,max) {
+  Math.floor(Math.random() * (max-min+1)) + min;
 }
 
 // Function to generate password with user input - This is the main one.
@@ -125,6 +125,29 @@ function generatePassword() {
     return;
   }
   getPasswordOptions();
+  var quantity = 0;
+  passwordOption.forEach(function(i){
+    if (i == true){
+      quantity++};
+  })
+  console.log(quantity);
+  getRandomNumCharacter(num,quantity);
+  console.log(passwordNumCharacter);
+}
+
+//x is the number of characters user want to input, equal to "num" value
+//y is the number of character types, equal to "quantity" value
+//z is the array contain the types of character from user input, equal to "passwordOption" array
+function getRandomNumCharacter(x,y){
+  if (y == 1){
+    return [passwordNumCharacter.push(x)];
+  };
+
+  var pikachu = getRandom(1,x);
+  return [passwordNumCharacter.push(pikachu),
+          y = y-1,
+          getRandomNumCharacter(x-pikachu,y),
+          ]
 }
 
 // Get references to the #generate element
