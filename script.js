@@ -111,6 +111,33 @@ function getRandom(min,max) {
   return Math.floor(Math.random() * (max-min+1)) + min;
 }
 
+//x is the number of characters user want to input, equal to "num" value
+//y is the number of character types, equal to "quantity" value
+//arr is the array to contain the number of characters for each type
+function getRandomNumCharacter(x,y,arr){
+  if (y == 1){
+    return [arr.push(x)];
+  };
+  var pikachu = getRandom(1,x);
+  // console.log(pikachu);
+  return [arr.push(pikachu),
+          getRandomNumCharacter((x-pikachu), (y-1), arr),
+          ]
+} // Is there any chance the returned value will be 0? If this is the case then it needs to be adjusted.
+
+// Random select a character from an array;
+// i is the number of characters needed to be selected
+// arr is the target array
+function getChar(i,arr){
+  let counter = 0;
+  let arrayChar = "";
+  while (counter < i) {
+    arrayChar += arr.charAt(getRandom(0,arr.length));
+    i +=1;
+  }
+  return arrayChar;
+}
+
 // Function to generate password with user input - This is the main one.
 function generatePassword() {
   //To determine the number of characters in the password
@@ -146,7 +173,7 @@ function generatePassword() {
   })
   console.log("The number of characters for choosen types: " + NumberCharacters);
   
-  // How to match the numner defined in the "NumberCharacters" to the "option"
+  // Match the numner defined in the "NumberCharacters" to the "option"
   var optionPassword = [];
   option.forEach(function(i){
     if (i == false){
@@ -154,21 +181,11 @@ function generatePassword() {
     }
   })
   console.log("The number of characters for all character types: " + NumberCharacters);
-}
 
-//x is the number of characters user want to input, equal to "num" value
-//y is the number of character types, equal to "quantity" value
-//arr is the array to contain the number of characters for each type
-function getRandomNumCharacter(x,y,arr){
-  if (y == 1){
-    return [arr.push(x)];
-  };
-  var pikachu = getRandom(1,x);
-  // console.log(pikachu);
-  return [arr.push(pikachu),
-          getRandomNumCharacter((x-pikachu), (y-1), arr),
-          ]
-} // Is there any chance the returned value will be 0? If this is the case then it needs to be adjusted.
+  // Randomise characters from each types using the input from NumnberCharacters
+  var passwordGen = "";
+  
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
