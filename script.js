@@ -113,6 +113,7 @@ function getRandom(min,max) {
 
 // Function to generate password with user input - This is the main one.
 function generatePassword() {
+  //To determine the number of characters in the password
   var num = prompt("How many characters do you want your Password to contain?");
   num = +num;
   console.log("The number of characters in the password: " + num);
@@ -124,6 +125,7 @@ function generatePassword() {
     return;
   }
 
+  //To decide which type of characters will be in the password
   var passwordOption = [];
   var quantity = 0;
   getPasswordOptions(passwordOption);
@@ -133,14 +135,12 @@ function generatePassword() {
   })
   console.log("The number of types of characters in the password: " + quantity);
   
-  var NumberCharacters = []; //To store random number of characters for each selected character types
-  if (quantity == 1){
-    NumberCharacters.push(num);
-  } else {
-    getRandomNumCharacter(num,quantity,NumberCharacters);
-  }
-  console.log(NumberCharacters);
+  //To store random number of characters for each selected character types
+  var NumberCharacters = [];
+  getRandomNumCharacter(num,quantity,NumberCharacters);
+  console.log("The number of characters for each type: " + NumberCharacters);
   
+  // How to match the numner defined in the "NumberCharacters" to the "passwordOption"
 }
 
 //x is the number of characters user want to input, equal to "num" value
@@ -155,7 +155,7 @@ function getRandomNumCharacter(x,y,arr){
   return [arr.push(pikachu),
           getRandomNumCharacter((x-pikachu), (y-1), arr),
           ]
-}
+} // Is there any chance the returned value will be 0? If this is the case then it needs to be adjusted.
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
