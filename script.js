@@ -111,9 +111,8 @@ function getRandom(min,max) {
   return Math.floor(Math.random() * (max-min+1)) + min;
 }
 
-//x is the number of characters from user input 
-//y is the number of character types, from getPasswordOptions(arr) function
-//arr is the array to contain the number of characters for each type
+// Function to generate random integer numbes to a fixed sum; x is the number of characters from user input 
+// y is the number of character types; "arr" array contains the number of characters for each type
 function getRandomNumCharacter(x,y,arr){
   if (y == 1){
     return [arr.push(x)];
@@ -125,9 +124,13 @@ function getRandomNumCharacter(x,y,arr){
           ]
 } // Is there any chance the returned value will be 0? If this is the case then it needs to be adjusted.
 
-// Random select a character from an array;
-// i is the number of characters needed to be selected - the length of the array
-// arr is the target array
+// Function to check all numbers from getRandomNumCharacter > 0
+function checkNum(arr){
+  
+}
+
+// Function to randomly select a number of characters from an array;
+// i is the number of characters needed to be selected - the length of the array; arr is the target array
 function getChar(i,arr){
   let counter = 0;
   let stringChar = "";
@@ -138,7 +141,7 @@ function getChar(i,arr){
   return stringChar;
 }
 
-// Function to generate password with user input - This is the main one.
+// Function to generate password with user input - This is the main function.
 function generatePassword() {
   //To determine the number of characters in the password
   let num = prompt("How many characters do you want your Password to contain?");
@@ -178,12 +181,6 @@ function generatePassword() {
       NumberCharacters.splice(i,0,0);
     }
   }
-  // let test=[];
-  // option.map(function(i){
-  //   if (i == false){
-  //     NumberCharacters.splice(i,0,0);
-  //   }
-  // }) Not sure why this one doesn't work??
   console.log("The number of characters for all character types: " + NumberCharacters);
 
   // Randomise characters from each types using the input from NumnberCharacters
@@ -193,17 +190,18 @@ function generatePassword() {
   }
   console.log(passwordGen); // Array value
   
-  // Shuffle your password - use Fisher Yates Method
-  let passwordAlter = passwordGen;
-  passwordAlter.split;
-  // for (let i = passwordAlter.length - 1; i >= 0 ; i--){
-  //   const j = getRandom(0,i);
-  //   const k = passwordAlter[j];
-  //   passwordAlter[j] = passwordAlter[i];
-  //   passwordAlter[i] = k;
-  // }
+  // Shuffle password - use Fisher Yates Method
+  let passwordAlter = passwordGen.split(""); //Split each character into an element in array
+  for (let i = passwordAlter.length - 1; i >= 0 ; i--){
+    const j = getRandom(0,i);
+    const k = passwordAlter[j];
+    passwordAlter[j] = passwordAlter[i];
+    passwordAlter[i] = k;
+  }
   console.log(passwordAlter);
-  return passwordAlter;
+  passwordGen = passwordAlter.join("");// Join all elements in array into a string without commas
+  console.log(passwordGen);
+  return passwordGen;
 }
 
 // Get references to the #generate element
