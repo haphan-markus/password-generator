@@ -91,15 +91,30 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  var f1 = confirm("Click Confirm to include special characters");
+  console.log(f1);
+  var f2 = confirm("Click Confirm to include numeric characters");
+  console.log(f2);
+  var f3 = confirm("Click Confirm to include lowercased characters");
+  console.log(f3);
+  var f4 = confirm("Click Confirm to include uppercased characters");
+  console.log(f4);
+  if (f1 == false && f2 == false && f3 == false && f4 == false){
+    alert("Your password options are not valid. The password needs to contain either lowercase, uppercase, numeric or special characters");
+    return;
+  }
+  return [
+    passwordOption = [f1,f2,f3,f4],
+    console.log(passwordOption),
+  ]
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  Math.floor(Math.random() * arr) + 1;
 }
 
-// Function to generate password with user input
+// Function to generate password with user input - This is the main one.
 function generatePassword() {
   var num = prompt("How many characters do you want your Password to contain?");
   if (num < 8){
@@ -109,14 +124,7 @@ function generatePassword() {
     alert("The number of characters must be less than 129");
     return;
   }
-  var specialCharactersChoice = confirm("Click Confirm to include special characters");
-  console.log(specialCharactersChoice);
-  var numericCharactersChoice = confirm("Click Confirm to include numeric characters");
-  console.log(numericCharactersChoice);
-  var lowerCasedCharactersChoice = confirm("Click Confirm to include lowercased characters");
-  console.log(lowerCasedCharactersChoice);
-  var upperCasedCharactersChoice = confirm("Click Confirm to include uppercased characters");
-  console.log(upperCasedCharactersChoice);
+  getPasswordOptions();
 }
 
 // Get references to the #generate element
