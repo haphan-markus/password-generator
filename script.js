@@ -185,8 +185,11 @@ function generatePassword() {
   var randomArr = [specialCharacters,numericCharacters,lowerCasedCharacters,upperCasedCharacters];
   console.log(randomArr);
   var passwordGen = "";
-  passwordGen += getChar(NumberCharacters[0],randomArr[0]);
   console.log(passwordGen);
+  for (let i = 0; i< NumberCharacters.length;i++){
+    passwordGen += getChar(NumberCharacters[i],randomArr[i]);
+  }
+  return passwordGen;
 }
 
 // Get references to the #generate element
