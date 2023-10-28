@@ -126,10 +126,10 @@ function generatePassword() {
   }
 
   //To decide which type of characters will be in the password
-  var passwordOption = [];
+  var option = [];
   var quantity = 0;
-  getPasswordOptions(passwordOption);
-  passwordOption.forEach(function(i){
+  getPasswordOptions(option);
+  option.forEach(function(i){
     if (i === true){
       quantity++};
   })
@@ -138,9 +138,22 @@ function generatePassword() {
   //To store random number of characters for each selected character types
   var NumberCharacters = [];
   getRandomNumCharacter(num,quantity,NumberCharacters);
-  console.log("The number of characters for each type: " + NumberCharacters);
+  NumberCharacters.forEach(function(i){
+    if (i <=0){
+      NumberCharacters =[];
+      getRandomNumCharacter(num,quantity,NumberCharacters);
+    }
+  })
+  console.log("The number of characters for choosen types: " + NumberCharacters);
   
-  // How to match the numner defined in the "NumberCharacters" to the "passwordOption"
+  // How to match the numner defined in the "NumberCharacters" to the "option"
+  var optionPassword = [];
+  option.forEach(function(i){
+    if (i == false){
+      NumberCharacters.splice(i,0,0);
+    }
+  })
+  console.log("The number of characters for all character types: " + NumberCharacters);
 }
 
 //x is the number of characters user want to input, equal to "num" value
