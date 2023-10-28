@@ -132,7 +132,7 @@ function getChar(i,arr){
   let counter = 0;
   let stringChar = [];
   while (counter < i) {
-    stringChar.push(arr[getRandom(0,(arr.length-1))]);
+    stringChar += arr.push(getRandom(0,(arr.length-1)));
     counter += 1;
   }
   return stringChar;
@@ -188,8 +188,8 @@ function generatePassword() {
 
   // Randomise characters from each types using the input from NumnberCharacters
   let passwordGen = [];
-  for (let i = 0; i< NumberCharacters.length; i++){
-    passwordGen.push(getChar(NumberCharacters[i],characterArr[i]));
+    for (let i = 0; i< NumberCharacters.length; i++){
+    passwordGen += push(getChar(NumberCharacters[i],characterArr[i]));
   }
   console.log(passwordGen); // Array value
   
