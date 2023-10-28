@@ -130,9 +130,9 @@ function getRandomNumCharacter(x,y,arr){
 // arr is the target array
 function getChar(i,arr){
   let counter = 0;
-  let stringChar = "";
+  let stringChar = [];
   while (counter < i) {
-    stringChar += arr[getRandom(0,(arr.length-1))];
+    stringChar.push(arr[getRandom(0,(arr.length-1))]);
     counter += 1;
   }
   return stringChar;
@@ -168,12 +168,12 @@ function generatePassword() {
       NumberCharacters =[];
       getRandomNumCharacter(num,quantityType,NumberCharacters);
     }
-  })
+  })//Need to iterate until the condition is met. Consider later.
   console.log("The number of characters for choosen types: " + NumberCharacters);
   
   // Match the numner defined in the "NumberCharacters" to the "option"
   let optionPassword = [];
-  for (let i = 0; i< option.length;i++){
+  for (let i = 0; i< option.length; i++){
     if (option[i] == false){
       NumberCharacters.splice(i,0,0);
     }
@@ -187,15 +187,22 @@ function generatePassword() {
   console.log("The number of characters for all character types: " + NumberCharacters);
 
   // Randomise characters from each types using the input from NumnberCharacters
-  let passwordGen = "";
-  for (let i = 0; i< NumberCharacters.length;i++){
-    passwordGen += getChar(NumberCharacters[i],characterArr[i]);
+  let passwordGen = [];
+  for (let i = 0; i< NumberCharacters.length; i++){
+    passwordGen.push(getChar(NumberCharacters[i],characterArr[i]));
   }
-  console.log(passwordGen);
-
+  console.log(passwordGen); // Array value
+  
   // Shuffle your password - use Fisher Yates Method
-
-  return passwordGen;
+  let passwordAlter = passwordGen;
+  for (let i = passwordAlter.length - 1; i >= 0 ; i--){
+    const j = getRandom(0,i);
+    const k = passwordAlter[j];
+    passwordAlter[j] = passwordAlter[i];
+    passwordAlter[i] = k;
+  }
+  console.log(passwordAlter);
+  return passwordAlter;
 }
 
 // Get references to the #generate element
