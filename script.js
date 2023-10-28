@@ -88,7 +88,6 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-
 // Function to prompt user for password options
 function getPasswordOptions(arr) {
   var f1 = confirm("Click Confirm to include special characters");
@@ -126,16 +125,16 @@ function getRandomNumCharacter(x,y,arr){
 } // Is there any chance the returned value will be 0? If this is the case then it needs to be adjusted.
 
 // Random select a character from an array;
-// i is the number of characters needed to be selected
+// i is the number of characters needed to be selected - the length of the array
 // arr is the target array
 function getChar(i,arr){
   let counter = 0;
-  let arrayChar = "";
+  let stringChar = "";
   while (counter < i) {
-    arrayChar += arr.charAt(getRandom(0,arr.length));
-    i +=1;
+    stringChar += arr[getRandom(0,(arr.length-1))];
+    counter += 1;
   }
-  return arrayChar;
+  return stringChar;
 }
 
 // Function to generate password with user input - This is the main one.
@@ -183,8 +182,11 @@ function generatePassword() {
   console.log("The number of characters for all character types: " + NumberCharacters);
 
   // Randomise characters from each types using the input from NumnberCharacters
+  var randomArr = [specialCharacters,numericCharacters,lowerCasedCharacters,upperCasedCharacters];
+  console.log(randomArr);
   var passwordGen = "";
-  
+  passwordGen += getChar(NumberCharacters[0],randomArr[0]);
+  console.log(passwordGen);
 }
 
 // Get references to the #generate element
