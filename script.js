@@ -95,11 +95,11 @@ function getPasswordOptions(arr) {
   arr.push(f1);
   var f2 = confirm("Click Confirm to include numeric characters");
   arr.push(f2);
-  var f3 = confirm("Click Confirm to include lowercased characters");
+  var f3 = confirm("Click Confirm to include lowercase characters");
   arr.push(f3);
-  var f4 = confirm("Click Confirm to include uppercased characters");
+  var f4 = confirm("Click Confirm to include uppercase characters");
   arr.push(f4);
-  console.log("Confirm option for the password: " + f1 + ", " + f2 + ", " + f3 + ", " + f4 + ".");
+  console.log("Confirm option for the password: Special characters: " + f1 + ", Numeric: " + f2 + ", Lowercase: " + f3 + ", and Uppercase characters: " + f4 + ".");
   if (f1 == false && f2 == false && f3 == false && f4 == false){
     alert("Your password options are not valid. The password needs to contain either lowercase, uppercase, numeric or special characters");
     return;
@@ -115,7 +115,7 @@ function getRandom(min,max) {
 function generatePassword() {
   var num = prompt("How many characters do you want your Password to contain?");
   num = +num;
-  console.log(num);
+  console.log("The number of characters in the password: " + num);
   if (num < 8){
     alert("The number of characters must be more than 8");
     return;
@@ -127,12 +127,11 @@ function generatePassword() {
   var passwordOption = [];
   var quantity = 0;
   getPasswordOptions(passwordOption);
-  console.log(passwordOption); console.log(typeof(passwordOption));
   passwordOption.forEach(function(i){
     if (i === true){
       quantity++};
   })
-  console.log(quantity);
+  console.log("The number of types of characters in the password: " + quantity);
   
   var NumberCharacters = []; //To store random number of characters for each selected character types
   if (quantity == 1){
@@ -146,13 +145,13 @@ function generatePassword() {
 
 //x is the number of characters user want to input, equal to "num" value
 //y is the number of character types, equal to "quantity" value
+//arr is the array to contain the number of characters for each type
 function getRandomNumCharacter(x,y,arr){
   if (y == 1){
     return [arr.push(x)];
   };
-  
   var pikachu = getRandom(1,x);
-  console.log(pikachu);
+  // console.log(pikachu);
   return [arr.push(pikachu),
           getRandomNumCharacter((x-pikachu), (y-1), arr),
           ]
