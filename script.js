@@ -131,22 +131,25 @@ function generatePassword() {
       quantity++};
   })
   console.log(quantity);
-  getRandomNumCharacter(num,quantity);
-  console.log(passwordNumCharacter);
+  var arrx = []; //To store random number of characters for each selected character types
+  if (quantity == 1){
+    arrx = [num];
+  } else {getRandomNumCharacter(num,quantity,arrx);}
+  console.log(arrx);
+  
 }
 
 //x is the number of characters user want to input, equal to "num" value
 //y is the number of character types, equal to "quantity" value
-//z is the array contain the types of character from user input, equal to "passwordOption" array
-function getRandomNumCharacter(x,y){
+function getRandomNumCharacter(x,y,arr){
   if (y == 1){
-    return [passwordNumCharacter.push(x)];
+    return [arr.push(x)];
   };
-
+  
   var pikachu = getRandom(1,x);
-  return [passwordNumCharacter.push(pikachu),
+  return [arr.push(pikachu),
           y = y-1,
-          getRandomNumCharacter(x-pikachu,y),
+          getRandomNumCharacter(x-pikachu,y,arr),
           ]
 }
 
