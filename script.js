@@ -102,7 +102,8 @@ function getPasswordOptions(arr) {
   arr.push(x4);
   console.log("Confirm option for the password: Special characters: " + x1 + ", Numeric: " + x2 + ", Lowercase: " + x3 + ", and Uppercase characters: " + x4 + ".");
   if (x1 == false && x2 == false && x3 == false && x4 == false){
-    return alert("Your password options are not valid. The password needs to contain either lowercase, uppercase, numeric or special characters");
+    return [alert("Your password options are not valid. The password needs to contain either lowercase, uppercase, numeric or special characters"),
+            arr.length = 0];
   } else {return arr}
 }
 
@@ -118,15 +119,19 @@ function getRandomNumCharacter(x,y,arr){
     return [arr.push(x)];
   }
   let pikachu = getRandom(1,x);
-  // console.log(pikachu);
   return [arr.push(pikachu),
           getRandomNumCharacter((x-pikachu), (y-1), arr),
           ]
-} // Is there any chance the returned value will be 0? If this is the case then it needs to be adjusted.
+}
 
-// Function to check all numbers from getRandomNumCharacter > 0
+// Function to check all numbers from an array. Return an empty array if there is any value from array is <= 0.
 function checkNum(arr){
-  
+  for (let i = 0; i < arr.length; i++){
+    if (arr[i] <= 0){
+      return arr = [];
+    }  
+  }
+  return;
 }
 
 // Function to randomly select a number of characters from an array;
@@ -148,7 +153,7 @@ function generatePassword() {
   num = +num;
   console.log("The number of characters in the password: " + num);
   if (num < 8){
-    return alert("The number of characters must be more than 8");
+    return alert("The number of characters must be more than 7");
   } else if (num > 128){
     return alert("The number of characters must be less than 129");
   }
@@ -157,6 +162,11 @@ function generatePassword() {
   let option = [];
   let quantityType = 0;
   getPasswordOptions(option);
+  if (option.length == 0) {
+    return [console.log("The password generator will stop."),
+            alert("The password generator will stop.")
+            ]
+  }
   option.forEach(function(i){
     if (i === true){
       quantityType++};
@@ -165,17 +175,19 @@ function generatePassword() {
   
   //To store random number of characters for each selected character types
   let NumberCharacters = [];
-  getRandomNumCharacter(num,quantityType,NumberCharacters);
-  NumberCharacters.forEach(function(i){
-    if (i <=0){
-      NumberCharacters =[];
-      getRandomNumCharacter(num,quantityType,NumberCharacters);
-    }
-  })//Need to iterate until the condition is met. Consider later.
+  while (NumberCharacters.length = 0) {
+    getRandomNumCharacter(num,quantityType,NumberCharacters);
+    checkNum(NumberCharacters);
+  }
+  // NumberCharacters.forEach(function(i){
+  //   if (i <=0){
+  //     NumberCharacters =[];
+  //     getRandomNumCharacter(num,quantityType,NumberCharacters);
+  //   }
+  // })
   console.log("The number of characters for choosen types: " + NumberCharacters);
   
-  // Match the numner defined in the "NumberCharacters" to the "option"
-  let optionPassword = [];
+  // To match the numner defined in the "NumberCharacters" to the "option"
   for (let i = 0; i< option.length; i++){
     if (option[i] == false){
       NumberCharacters.splice(i,0,0);
@@ -183,15 +195,15 @@ function generatePassword() {
   }
   console.log("The number of characters for all character types: " + NumberCharacters);
 
-  // Randomise characters from each types using the input from NumnberCharacters
+  // To randomise characters from each types using the input from NumnberCharacters
   let passwordGen = "";
   for (let i = 0; i< NumberCharacters.length; i++){
     passwordGen += getChar(NumberCharacters[i],characterArr[i]);
   }
-  console.log(passwordGen); // Array value
+  console.log(passwordGen); // String value
   
-  // Shuffle password - use Fisher Yates Method
-  let passwordAlter = passwordGen.split(""); //Split each character into an element in array
+  // To shuffle password - Fisher Yates Method
+  let passwordAlter = passwordGen.split(""); // To split each character into an element in array
   for (let i = passwordAlter.length - 1; i >= 0 ; i--){
     const j = getRandom(0,i);
     const k = passwordAlter[j];
@@ -199,7 +211,7 @@ function generatePassword() {
     passwordAlter[i] = k;
   }
   console.log(passwordAlter);
-  passwordGen = passwordAlter.join("");// Join all elements in array into a string without commas
+  passwordGen = passwordAlter.join("");// To join all elements in array into a string without commas
   console.log(passwordGen);
   return passwordGen;
 }
