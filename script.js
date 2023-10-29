@@ -179,13 +179,7 @@ function generatePassword() {
     getRandomNumCharacter(num,quantityType,NumberCharacters);
     checkNum(NumberCharacters);
   }
-  // NumberCharacters.forEach(function(i){
-  //   if (i <=0){
-  //     NumberCharacters =[];
-  //     getRandomNumCharacter(num,quantityType,NumberCharacters);
-  //   }
-  // })
-  console.log("The number of characters for choosen types: " + NumberCharacters);
+  console.log("Number of characters for true types: " + NumberCharacters);
   
   // To match the numner defined in the "NumberCharacters" to the "option"
   for (let i = 0; i< option.length; i++){
@@ -193,7 +187,7 @@ function generatePassword() {
       NumberCharacters.splice(i,0,0);
     }
   }
-  console.log("The number of characters for all character types: " + NumberCharacters);
+  console.log("Number of characters for all character types: " + NumberCharacters);
 
   // To randomise characters from each types using the input from NumnberCharacters
   let passwordGen = "";
