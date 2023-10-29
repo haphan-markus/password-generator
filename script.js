@@ -128,7 +128,7 @@ function getRandomNumCharacter(x,y,arr){
 function checkNum(arr){
   for (let i = 0; i < arr.length; i++){
     if (arr[i] < 0 || arr[i] == 0) {
-      return arr = [];
+      return [arr.length = 0]
     }  
   }
   return arr = arr;
@@ -180,6 +180,7 @@ function generatePassword() {
   let NumberCharacters = [];
   while (NumberCharacters.length == 0) {
     getRandomNumCharacter(num,quantityType,NumberCharacters);
+    console.log("Array: " + NumberCharacters);
     checkNum(NumberCharacters);
   }
   console.log("Number of characters for true types: " + NumberCharacters);
