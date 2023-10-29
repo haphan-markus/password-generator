@@ -112,7 +112,7 @@ function getRandom(min,max) {
   return Math.floor(Math.random() * (max-min+1)) + min;
 }
 
-// Function to generate random integer numbes to a fixed sum; x is the number of characters from user input 
+// Function to generate random integer numbers to a fixed sum; x is the total number of characters from user input 
 // y is the number of character types; "arr" array contains the number of characters for each type
 function getRandomNumCharacter(x,y,arr){
   if (y == 1){
