@@ -131,7 +131,7 @@ function checkNum(arr){
       return arr = [];
     }  
   }
-  return;
+  return arr;
 }
 
 // Function to randomly select a number of characters from an array;
@@ -175,7 +175,7 @@ function generatePassword() {
   
   //To store random number of characters for each selected character types
   let NumberCharacters = [];
-  while (NumberCharacters.length = 0) {
+  while (NumberCharacters.length == 0) {
     getRandomNumCharacter(num,quantityType,NumberCharacters);
     checkNum(NumberCharacters);
   }
