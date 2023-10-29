@@ -127,11 +127,11 @@ function getRandomNumCharacter(x,y,arr){
 // Function to check all numbers from an array. Return an empty array if there is any value from array is <= 0.
 function checkNum(arr){
   for (let i = 0; i < arr.length; i++){
-    if (arr[i] <= 0){
+    if (arr[i] < 0 || arr[i] == 0) {
       return arr = [];
     }  
   }
-  return arr;
+  return arr = arr;
 }
 
 // Function to randomly select a number of characters from an array;
