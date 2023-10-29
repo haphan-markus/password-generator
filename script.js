@@ -152,6 +152,9 @@ function generatePassword() {
   let num = prompt("How many characters do you want your Password to contain?");
   num = +num;
   console.log("The number of characters in the password: " + num);
+  if (Number.isNaN(num) == true){
+    return [alert("This is not a valid number.")]
+  }
   if (num < 8){
     return alert("The number of characters must be more than 7");
   } else if (num > 128){
